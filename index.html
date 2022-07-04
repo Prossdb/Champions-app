@@ -2,34 +2,23 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Champions App</title>
-</head>
-<body>
-  
-  <div class="about_container">
-    <div class="container_copy">
-        <h1> Predict your Champions. </h1>
-        <form action="/teams" method="post">
-        <input type="test" placeholder="name" name="name">
-        <input type="test" placeholder="surname" name="surname">
-        <button type="submit">SUBMIT</button>
-        <p>Keep track of your EPL winners for 2022!</p>
-        <a class="btn_primary" href="/views/index.ejs" target="">GO!</a>
+  <link href="app.css" rel="stylesheet">
+ <!-- index.ejs -->
+
+  <head>
+    <meta charset="UTF-8" />
+    <title>Champions App</title>
+  </head>
+
+  <body>
+    <h1>May The Champions be with you.</h1>
+
+    <form action="/teams" method="POST">
+      <input type="text" placeholder="name" name="name" />
+      <input type="text" placeholder="surname" name="surname" />
+      <input type="text" placeholder="team1" name="team1" />
+      <button type="submit">Submit</button>
     </form>
-    </div>
- 
-  </div>
-  <div class="bg">
-    <ul class="bg_area">
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-    </ul>
-  </div>
-</body>
+  </body>
+</html>
 </html>

@@ -1,0 +1,35 @@
+<!-- index.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Champions App</title>
+  </head>
+
+  <body>
+    <h1>May The Champions be with you.</h1>
+
+    <form action="/teams" method="POST">
+      <input type="text" placeholder="name" name="name" />
+      <input type="text" placeholder="surname" name="surname" />
+      <input type="text" placeholder="team1" name="team1" />
+      <button type="submit">Submit</button>
+    </form>
+    
+    <h2> Teams </h2>
+
+    <ul class="teams">
+      <!-- Loop through teams -->
+      <% for(var i = 0; i < teams.length; i++) {%>
+        <li class="team">
+          <!-- Output name from the iterated teams object -->
+          <span><%= teams[i].name %></span>
+          <span><%= teams[i].surname %></span>
+          <!-- Output teams from the iterated teams object -->
+          <span><%= teams[i].team1 %></span>
+        </li>
+      <% } %>
+    </ul>
+
+  </body>
+</html>

@@ -9,13 +9,26 @@ const connectionString = ('mongodb+srv://champions:Oxtails4@champions.pgqcfe4.mo
 MongoClient.connect(connectionString, { useUnifiedTopology: true })
   .then(client => {
     console.log('Connected to Database')
-    const db = client.db('champions-teams')
+    const db = client.db('champions')
+    const soccerTeams = db.collection ('teams')
+    app.set('view engine', 'ejs')
     app.use(bodyParser.urlencoded({ extended: true}))
     app.get('/', (req, res) => {
-        res.sendFile(__dirname + '/index.html')
+      soccerTeams.find().toArray()
+      .then(results =>{
+        console.log(results)
+        res.render('index.ejs', {teams: results})
+      })
+      .catch(error => console.error(error))
+      
       })
       app.post('/teams',(req, res)=>{
-        console.log(req.body)
+       soccerTeams.insertOne(req.body)
+       .then(result => {
+        console.log(result)
+        res.redirect('/')
+       })
+       .catch(error => console.error(error))
       })
       app.listen(3000,function(){
         console.log('listening on 3000')
