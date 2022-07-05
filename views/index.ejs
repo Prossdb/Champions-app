@@ -26,10 +26,27 @@
           <span><%= teams[i].name %></span>
           <span><%= teams[i].surname %></span>
           <!-- Output teams from the iterated teams object -->
-          <span><%= teams[i].team1 %></span>
+          <span><%= teams[i].teams %></span>
         </li>
       <% } %>
     </ul>
 
+    <div>
+      <h2>CHAMPIONS WHO!!!</h2>
+      <p>
+         TEAM YOU CHOSE AT FIRST WITH ANOTHER TEAM!!. 
+      </p>
+      <button id="update-button">Replace Team</button>
+    </div>
+
+    <div>
+      <h2>Remove Champions!</h2>
+      <p>
+        Delete one team
+      </p>
+      <button id="delete-button">Delete team</button>
+    </div>
+    <div id="message"></div>
+    <script src="/main.js"></script>
   </body>
 </html>

@@ -13,7 +13,10 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
     const soccerTeams = db.collection ('teams')
     app.set('view engine', 'ejs')
     app.use(bodyParser.urlencoded({ extended: true}))
-    app.get('/', (req, res) => {
+   app.use(express.static('public'))
+    app.use(bodyParser.json())
+   
+   app.get('/', (req, res) => {
       soccerTeams.find().toArray()
       .then(results =>{
         console.log(results)
@@ -30,6 +33,39 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
        })
        .catch(error => console.error(error))
       })
+
+app.put('/teams', (req, res) =>{
+ soccerTeams.findOneAndUpdate(
+  {name: 'prosper'},
+  {
+    $set: {
+      name: req.body.name,
+      surname: req.body.surname,
+      teams: req.body.teams
+    }
+  },
+{
+  upsert: true
+}
+ )
+ .then(result =>{
+  console.log(result)
+  res.json('success')
+ })
+ .catch(error => console.error(error))
+})
+app.delete('/teams', (req,res) => {
+  soccerTeams.deleteOne(
+    {name: req.body.name },
+  )
+  .then(result => {
+    if (result.deletedCount === 0) {
+      return res.json('No quote to delete')
+    }
+    res.json(`Deleted Team`)
+  })
+  .catch(error => console.log(error))
+})
       app.listen(3000,function(){
         console.log('listening on 3000')
     })
